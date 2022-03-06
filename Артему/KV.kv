@@ -1,0 +1,135 @@
+<MyButton>:
+    id: my_button
+    cols:7
+    size_hint_y: None
+    height: self.minimum_height
+    row_default_height: 70
+    MDCheckbox:
+        on_active: app.on_checkbox_sensor_name(*args,root.ids.sensor_name.text)
+    MDLabel:
+        id : sensor_name
+        font_size : "20px"
+    MDIconButton:
+        icon: "content-cut"
+        on_release: app.cut_dialog(root.ids.sensor_name.text)
+    MDCheckbox:
+        on_active: app.on_checkbox_minimum(*args,root.ids.sensor_name.text)
+    MDCheckbox:
+        on_active: app.on_checkbox_average(*args,root.ids.sensor_name.text)
+    MDCheckbox:
+        on_active: app.on_checkbox_maximum(*args,root.ids.sensor_name.text)
+    MDTextField:
+        id: data_N
+        mode: "rectangle"
+        on_text : app.get_num_max(root.ids.sensor_name.text,root.ids.data_N.text)
+<Content>
+    id: data_content
+    orientation: "vertical"
+    size_hint_y: None
+    size_hint_x: None
+    width: 100
+    height: 150
+    MDTextField:
+        id: data_start
+        hint_text: "Start"
+        size_hint_x:None
+        width: 100
+        on_text : app.get_cut_start(root.ids.data_start.text)
+    MDTextField:
+        id: data_finish
+        hint_text: "Finish"
+        size_hint_x:None
+        width: 100
+        on_text : app.get_cut_finish(root.ids.data_finish.text)
+
+<TitleTable>:
+    id: title_table
+    cols:7
+    size_hint_y: None
+    height: self.minimum_height
+    row_default_height: 70
+    MDLabel:
+        font_size : "20px"
+        text: "On\Off"
+    MDLabel:
+        font_size : "20px"
+        text: "Sensor"
+    MDLabel:
+        font_size : "20px"
+        text: "     Cut"
+    MDLabel:
+        font_size : "20px"
+        text: "Minimum"
+    MDLabel:
+        font_size : "20px"
+        text: "Average"
+    MDLabel:
+        font_size : "20px"
+        text: "Maximum"
+    MDLabel:
+        font_size : "20px"
+        text: "Number of maximum"
+
+MDScreen:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    MDBoxLayout:
+        orientation : "vertical"
+        adaptive_width: True
+        adaptive_height: True
+        TooltipMDIconButton:
+            icon: "folder"
+            tooltip_text: "Открыть проводник"
+            on_release: app.file_manager_open()
+        MDTextField:
+            id :data_L
+            size_hint_x:None
+            width: 100
+            hint_text:"  L Размер"
+            on_text : app.get_L(root.ids.data_L.text)
+        MDTextField:
+            id :data_V
+            size_hint_x:None
+            width: 100
+            hint_text:"  V Скорость"
+            on_text : app.get_V(root.ids.data_V.text)
+        MDFillRoundFlatButton:
+        MDBoxLayout:
+            MDFillRoundFlatButton:
+                id: function
+                font_size:26
+                text: "График"
+                on_release: app.reload_function()
+                on_release: app.change_chosen_mode(root.ids.function.text)
+            MDFillRoundFlatButton:
+                id: spectrum
+                font_size:26
+                text: "АЧХ"
+                on_release: app.reload_spectrum()
+                on_release: app.change_chosen_mode(root.ids.spectrum.text)
+            MDFillRoundFlatButton:
+                id: spectrum_1
+                font_size:26
+                text: "Энергетический спектр к числам Струхаля"
+                on_release: app.reload_Power_Spectrum()
+                on_release: app.change_chosen_mode(root.ids.spectrum_1.text)
+    MDBoxLayout:
+        id: graph
+        orientation:"vertical"
+        pos_hint:{"top": 1, "center_x": .29}
+        size_hint:(0.57, 0.68)
+    MDAnchorLayout:
+        size_hint:0.43,1
+        pos_hint:{"right": 1}
+        ScrollView:
+            do_scroll_y: True
+            MDGridLayout:
+                id:data
+                cols:1
+                size_hint_y: None
+                height: self.minimum_height
+                row_default_height: 70

@@ -1,0 +1,15 @@
+<Widgets>:
+    Button:
+        text: "Press me"
+        on_release: root.btn()
+<Popups>:
+    Label:
+        text: "You pressed the button"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+    Button:
+        text: "Close the popup"
+        # установить размер кнопки
+        size_hint: 1, 0.4
+        # установить положение кнопки
+        pos_hint: {"x":0, "y":0.1}
