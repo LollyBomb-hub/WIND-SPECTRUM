@@ -36,8 +36,10 @@ class MyButton(MDGridLayout):
 class TitleTable(MDGridLayout):
     pass
 
+
 class TooltipMDIconButton(MDIconButton, MDTooltip):
     pass
+
 
 class WIND_SPECTRUM(MDApp):
     dialog = None
@@ -369,6 +371,7 @@ class WIND_SPECTRUM(MDApp):
         self.name_sensors = []
         self.data_tables = None
         self.chosen_mode = "График"
+
 
 if __name__ == '__main__':
     WIND_SPECTRUM().run()

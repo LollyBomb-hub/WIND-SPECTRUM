@@ -9,7 +9,7 @@ def reader(file_name):
     if 'xlsx' in file_name:
         data = pd.read_excel(file_name, skiprows=4)
     elif 'csv' in file_name:
-        # Строки с 12 по 14 определяют разделитель файла csv
+        # Строки с 13 по 15 определяют разделитель файла csv
         sniffer = csv.Sniffer()
         fp = open(file_name)
         delimiter = sniffer.sniff(fp.read(5000)).delimiter
