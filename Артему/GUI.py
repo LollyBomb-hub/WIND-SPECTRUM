@@ -98,6 +98,8 @@ class WIND_SPECTRUM(MDApp):
                 title=sensor_name,
                 type="custom",
                 content_cls=Content(),
+                size_hint_x=0.2,
+                # width=150
             )
         self.sensor_name_cut = sensor_name
         self.dialog.content_cls.ids.data_start.text = str(self.selected_sensors[sensor_name][6])
